@@ -1,0 +1,37 @@
+﻿@model ControllersExample.Models.ExampleModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="~/css/style-controllers-example.css" />
+
+</head>
+<body>
+    @Model.Sentence
+    <div style="text-align:left">
+        <p>
+            Number: <input type="text" id="txtNumber" />
+        </p>
+        <div id="div1" style="color:brown"></div><br />
+        <div id="div2" style="color:darkcyan"></div>
+    </div>
+    <script>
+        txtNumber.onkeyup = function(e){
+            fetch('/home/ParamExample/' + txtNumber.value)
+                .then(res => res.text())
+                .then(text => div1.innerHTML = text);
+
+            fetch('/home/RouteDataExample/' + txtNumber.value)
+                .then(res => res.text())
+                .then(text => div2.innerHTML = text);
+        };
+    </script>
+</body>
+</html>
